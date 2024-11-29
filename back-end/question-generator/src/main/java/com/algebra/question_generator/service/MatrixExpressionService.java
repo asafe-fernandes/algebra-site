@@ -25,14 +25,14 @@ public class MatrixExpressionService {
     }
   }
 
-  private String getRandomOperation(String[] operations) {
+  private String getRandomOperation() {
+    String[] operations = { "+", "*" };
     return operations[random.nextInt(operations.length)];
   }
 
   private MatrixQuestion generateExpressionQuestion(int numMatrices, int rows, int columns, int min, int max) {
     List<Matrix> matrices = new ArrayList<>();
     StringBuilder operationsBuilder = new StringBuilder();
-    String[] operations = { "+", "*" };
 
     for (int i = 0; i < numMatrices; i++) {
       matrices.add(new Matrix(rows, columns, min, max));
@@ -42,7 +42,7 @@ public class MatrixExpressionService {
 
     for (int i = 0; i < numMatrices; i++) {
 
-      String operation = getRandomOperation(operations);
+      String operation = getRandomOperation();
       operationsBuilder.append("M ").append(i + 1);
 
       if (random.nextBoolean()) {
