@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+  --font: 'Roboto', sans-serif;
+
+  --white: white;
+  --cleanYellow: #f0ebdf;
+  --purple: #6f73d2;
+  --blue: #112a41;
+  --darkBlue: #081520;
+  
+  --black: black;
+  --green: #1f972d;
+  --red: #d83232;
+  --gold: #ffd700;
+  --silver: #c0c0c0;
+  --cooper: #cd7f32;
+
+  --color: var(--black);
+  --colorBackground: var(--white);
+  --colorContrast: var(--cleanYellow);
+
+  --shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  --shadowLarge: 2px 2px 4px rgba(0, 0, 0, 0.25);
+
+  --borderRadius: 15px;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+*:focus-visible{
+  outline: none;
+  border: none;
+
+  transform: translate(0px, -5px);
+  transition: all .3s ease;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  background-color: var(--color-background);
+}
+
+h1{
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--color);
+}
+h2{
+  font-size: 1.6em;
+  font-weight: 600;
+  color: var(--color);
+}
+h3{
+  font-size: 1.35em;
+  font-weight: 500;
+  color: var(--color);
+}
+h4{
+  font-size: 1.15em;
+  font-weight: 600;
+  color: var(--color);
+}
+h5{
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--purple);
+}
+p{
+  font-size: 1em;
+  font-weight: 400;
+  color: var(--color);
+}
+.p_small{
+  font-size: .9em;
+  color: var(--color);
+}
