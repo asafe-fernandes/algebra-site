@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <title>Álgebra</title>
+      <title>MatHub</title>
       <body suppressHydrationWarning={true}>
         {children}
       </body>
