@@ -1,4 +1,5 @@
 import './globals.css';
+import styles from './layout.module.css';
 
 export default function RootLayout({
   children,
@@ -8,7 +9,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <title>MatHub</title>
-      <body suppressHydrationWarning={true}>
+      <body className={styles.layoutContainer} suppressHydrationWarning={true}>
         {children}
       </body>
     </html>

@@ -1,0 +1,25 @@
+.linkIconContainer{
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+  max-height: 40px;
+
+  fill: var(--purple);
+  color: var(--purple);
+
+  transition: all .2s ease-in-out;
+}
+@media screen and (min-width: 769px) {
+  .linkIconContainer:hover{
+    opacity: .7;
+  }
+}
+.linkIconContainer:active{
+  transform: scale(.9);
+  transition: all .07s ease-in-out;
+}
+
+.linkIconContainer *{
+  width: 100%;
+  height: 100%;
+}
