@@ -8,6 +8,7 @@ export default function Header(){
     <header className={styles.headerContainer}>
       <LinkIcon href='/'><Logo /></LinkIcon>
       <h5>Animação texto</h5>
+      <h5>Animação texto</h5>
       <LinkIcon href='/login'><BsPlayFill /></LinkIcon>
     </header>
   );
