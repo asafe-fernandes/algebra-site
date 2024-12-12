@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Matrix {
+public class Matrix implements Operand {
   private final int[][] data;
   Random rand = new Random();
 
@@ -61,7 +61,7 @@ public class Matrix {
     }
     return new Matrix(transposed);
   }
-
+  @Override
   public Matrix add(Matrix other) {
     Matrix result = new Matrix(this.getRows(), this.getColumns());
 
@@ -73,6 +73,7 @@ public class Matrix {
     return result;
   }
 
+  @Override
   public Matrix subtract(Matrix other) {
     Matrix result = new Matrix(this.getRows(), this.getColumns());
 
@@ -84,6 +85,7 @@ public class Matrix {
     return result;
   }
 
+  @Override
   public Matrix multiply(Matrix other) {
     int rowsA = this.getRows();
     int colsA = this.getColumns();
