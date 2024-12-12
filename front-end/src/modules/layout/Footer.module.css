@@ -10,5 +10,24 @@
 }
 
 .footerContainer{
+  padding: 50px 15px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 30px;
+
+  background-color: var(--colorContrast);
+  box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.15);
+
+  text-align: center;
+}
+
+.listAnchorContainer{
+  list-style: none;
   
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 20px;
 }

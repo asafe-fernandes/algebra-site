@@ -25,7 +25,7 @@ export default function lendingPage(){
         </Article>
         <LinkButton detach hreflang='pt-br' href='/questions'>Competir agora!</LinkButton>
       </Section>
-      <Footer />
+      <Footer theme='dark'/>
     </>
   );
 }
