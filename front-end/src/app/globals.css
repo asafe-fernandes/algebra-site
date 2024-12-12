@@ -20,8 +20,8 @@
   --colorBackground: var(--white);
   --colorContrast: var(--cleanYellow);
 
-  --shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-  --shadowLarge: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  --shadowLarge: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
   --borderRadius: 15px;
 }
@@ -82,4 +82,16 @@ p{
 .p_small{
   font-size: .9em;
   color: var(--color);
+}
+
+strong{
+  font-weight: 600;
+  color: var(--purple);
+}
+h1 > strong,
+h2 > strong,
+h3 > strong,
+h4 > strong,
+h5 > strong {
+  font-weight: 900;
 }

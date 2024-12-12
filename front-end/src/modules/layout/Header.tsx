@@ -10,9 +10,9 @@ export default function Header({theme}: {theme?: 'dark' | 'light'}){
   const slideText = ['Matriz', 'Lógica Matemática', 'Sistemas de Numeração'];
   return (
     <header className={`${styles.headerContainer} ${theme && styles[theme]}`}>
-      <LinkIcon href='/'><Logo /></LinkIcon>
+      <LinkIcon hreflang='pt-br' href='/' ><Logo /></LinkIcon>
       <SliderText timer={5} texts={slideText} animation='top'/>
-      <LinkIcon href='/login'><BsPlayFill /></LinkIcon>
+      <LinkIcon hreflang='pt-br' href='/login'><BsPlayFill /></LinkIcon>
     </header>
   );
 }
