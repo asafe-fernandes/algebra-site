@@ -74,10 +74,11 @@ h5{
   font-weight: 600;
   color: var(--purple);
 }
-p{
+p, li{
   font-size: 1em;
   font-weight: 400;
   color: var(--color);
+  line-height: 1.25;
 }
 .p_small{
   font-size: .9em;

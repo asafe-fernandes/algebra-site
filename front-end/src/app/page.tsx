@@ -13,18 +13,20 @@ export default function lendingPage(){
   return(
     <>
       <Header theme='dark'/>
-      <SectionPattern>
-        <h1>Aprimore seu<br/><strong>CONHECIMENTO!</strong></h1>
-        <LinkButton detach href='/questions'>Praticar<BsPlay/> </LinkButton>
-      </SectionPattern>
-      <Section className={styles.containerFlexCenter}>
-        <Image className={styles.image} alt='' src={illustrationImage}/>
-        <Article>
-          <h2>Você está pronto para ser o <br/> <strong>MELHOR?</strong></h2>
-          <p>Suba de posição enquanto resolve desafios e desbloqueie conquistas. Compita com amigos ou alcance o topo no ranking global!</p>
-        </Article>
-        <LinkButton detach hreflang='pt-br' href='/questions'>Competir agora!</LinkButton>
-      </Section>
+      <main>
+        <SectionPattern>
+          <h1>Aprimore seu<br/><strong>CONHECIMENTO!</strong></h1>
+          <LinkButton detach href='/questions'>Praticar<BsPlay/> </LinkButton>
+        </SectionPattern>
+        <Section className={styles.containerFlexCenter}>
+          <Image className={styles.image} alt='' src={illustrationImage}/>
+          <Article>
+            <h2>Você está pronto para ser o <br/> <strong>MELHOR?</strong></h2>
+            <p>Suba de posição enquanto resolve desafios e desbloqueie conquistas. Compita com amigos ou alcance o topo no ranking global!</p>
+          </Article>
+          <LinkButton detach hreflang='pt-br' href='/questions'>Competir agora!</LinkButton>
+        </Section>
+      </main>
       <Footer theme='dark'/>
     </>
   );
