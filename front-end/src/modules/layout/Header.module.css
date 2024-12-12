@@ -1,3 +1,14 @@
+.dark{
+  --color: var(--white);
+  --colorBackground: var(--blue);
+  --colorContrast: var(--darkBlue);
+}
+.ligth{
+  --color: var(--black);
+  --colorBackground: var(--white);
+  --colorContrast: var(--cleanYellow);
+}
+
 .headerContainer{
   height: 60px;
   width: 100%;
