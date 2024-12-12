@@ -1,5 +1,10 @@
 package com.algebra.question_generator.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Rational implements Operand {
     int numerator;
     int denominator;
@@ -74,4 +79,19 @@ public class Rational implements Operand {
         return numerator + "/" + denominator;
     }
 
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public void setNumerator(int numerator) {
+        this.numerator = numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    public void setDenominator(int denominator) {
+        this.denominator = denominator;
+    }
 }
