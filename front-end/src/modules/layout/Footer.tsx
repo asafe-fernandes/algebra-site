@@ -18,6 +18,7 @@ export default function Footer({theme}: {theme?: 'dark' | 'light'}){
         <ul className={styles.listAnchorContainer}>
           <li><LinkText hreflang='pt-br' href='/terms'>Termos de Uso</LinkText></li>
           <li><LinkText hreflang='pt-br' href='/policy'>Políticas de Privacidade</LinkText></li>
+          <li><LinkText hreflang='pt-br' href='/policy/#cookies'>Cookies</LinkText></li>
         </ul>
       </Article>
     </footer>
