@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import TypeMensageBox, { TypeMensageBoxTheme } from '@tps/typeMensageBox';
 
 const initialState: TypeMensageBox = {
-  content: '',
+  content: undefined,
   theme: 'default',
   response: undefined
 };
@@ -14,7 +14,7 @@ const mensageBox = createSlice({
     mensage: {
       reducer(state, action: PayloadAction<TypeMensageBox>){
         state.content = action.payload.content;
-        state.theme = action.payload.theme && 'default';
+        state.theme = action.payload.theme;
       },
       prepare(content:string, theme?: TypeMensageBoxTheme){
         return { payload: {content, theme} };

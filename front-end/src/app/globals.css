@@ -10,6 +10,7 @@
   --darkBlue: #081520;
   
   --black: black;
+  --orange: #ff9100;
   --green: #1f972d;
   --red: #d83232;
   --gold: #ffd700;
@@ -46,6 +47,8 @@ html{
 }
 
 body{
+  min-height: 100vh;
+
   background-color: var(--color-background);
 }
 

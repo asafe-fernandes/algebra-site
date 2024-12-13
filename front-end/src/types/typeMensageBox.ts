@@ -1,7 +1,7 @@
 export type TypeMensageBoxTheme = 'alert' | 'error' | 'success' | 'default';
 
 type TypeMensageBox = {
-  content: string
+  content?: string
   theme?: TypeMensageBoxTheme
   response?: boolean
 };

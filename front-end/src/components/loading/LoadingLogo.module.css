@@ -36,7 +36,8 @@
 
 .svgContainer{
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  max-height: 100%;
   
   display: flex;
   flex-flow: row wrap;
