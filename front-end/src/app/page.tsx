@@ -9,7 +9,7 @@ import LinkButton from '@comp/actions/LinkButton';
 import Article from '@cont/Article';
 import Footer from '@mod/layout/Footer';
 
-export default function lendingPage(){
+export default function LendingPage(){
   return(
     <>
       <Header theme='dark'/>

@@ -5,7 +5,7 @@ import Section from '@cont/Section';
 import Article from '@cont/Article';
 import LinkText from '@comp/actions/LinkText';
 
-export default function policy(){
+export default function Policy(){
   return(
     <>
       <Header theme='dark'/>

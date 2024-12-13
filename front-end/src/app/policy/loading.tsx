@@ -1,5 +1,5 @@
 import LoadingLogo from '@comp/loading/LoadingLogo';
 
-export default function loading(){
+export default function Loading(){
   return <LoadingLogo />;
 }

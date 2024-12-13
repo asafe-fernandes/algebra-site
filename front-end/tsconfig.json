@@ -23,7 +23,9 @@
       "@public/*": ["./public/*"],
       "@comp/*": ["./src/components/*"],
       "@mod/*": ["./src/modules/*"],
-      "@cont/*": ["./src/containers/*"]
+      "@cont/*": ["./src/containers/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@tps/*": ["./src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
