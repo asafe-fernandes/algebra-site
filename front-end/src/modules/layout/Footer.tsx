@@ -14,7 +14,7 @@ export default function Footer({theme}: {theme?: 'dark' | 'light'}){
       </ul>
       <LinkButton hreflang='pt-br' href='/questions'>Exercícios</LinkButton>
       <Article>
-        <p className='p_small'>© Matriz | 2024<br />Todos os direitos reservados</p>
+        <p className='p_small'>© MatHub | 2024<br />Todos os direitos reservados</p>
         <ul className={styles.listAnchorContainer}>
           <li><LinkText hreflang='pt-br' href='/terms'>Termos de Uso</LinkText></li>
           <li><LinkText hreflang='pt-br' href='/policy'>Políticas de Privacidade</LinkText></li>
