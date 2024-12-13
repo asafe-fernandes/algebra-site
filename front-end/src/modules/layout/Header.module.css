@@ -10,6 +10,7 @@
 }
 
 .headerContainer{
+  z-index: 1;
   height: 60px;
   width: 100%;
   padding: 10px 15px;
