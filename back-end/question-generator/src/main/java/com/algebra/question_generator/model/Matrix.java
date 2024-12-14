@@ -1,5 +1,6 @@
 package com.algebra.question_generator.model;
 
+import java.util.Arrays;
 import java.util.Random;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
@@ -69,6 +70,7 @@ public class Matrix implements Operand {
     if (other instanceof Matrix) {
 
       Matrix m = (Matrix) other;
+      if (m.getColumns() != this.getColumns() || m.getRows() != this.getRows()) throw new ArithmeticException("cannot sum different order matrices");
       for (int i = 0; i < this.getRows(); i++) {
         for (int j = 0; j < this.getColumns(); j++) {
           result.setValue(i, j, (Rational) this.getValue(i, j).sum(m.getValue(i, j)));
@@ -95,8 +97,10 @@ public class Matrix implements Operand {
     if (other instanceof Matrix) {
 
       Matrix m = (Matrix) other;
+      if (m.getColumns() != this.getColumns() || m.getRows() != this.getRows()) throw new ArithmeticException("cannot subtract different order matrices");
       for (int i = 0; i < this.getRows(); i++) {
         for (int j = 0; j < this.getColumns(); j++) {
+          System.out.println("i: "+i+" j:"+j);
           result.setValue(i, j, (Rational) this.getValue(i, j).subtract(m.getValue(i, j)));
         }
       }
@@ -117,10 +121,12 @@ public class Matrix implements Operand {
   public Operand multiply(Operand other) {
     int rowsA = this.getRows();
     int colsA = this.getColumns();
-
-    Matrix result = new Matrix(this.getRows(), this.getColumns());
     if (other instanceof Matrix) {
       Matrix m = (Matrix) other;
+      Matrix result = new Matrix(this.getRows(), m.getColumns());
+      System.out.println("colsA: "+colsA);
+      System.out.println("RowsB: "+m.getRows());
+      if (colsA != m.getRows()) throw new ArithmeticException("cannot multiply matrices with different collumns and rows!");
       int colsB = m.getColumns();
       for (int i = 0; i < rowsA; i++) {
         for (int j = 0; j < colsB; j++) {
@@ -132,6 +138,7 @@ public class Matrix implements Operand {
       return result;
     } else if (other instanceof Rational) {
       Rational r = (Rational) other;
+      Matrix result = new Matrix(this.getRows(), this.getColumns());
       for (int i = 0; i < this.getRows(); i++) {
         for (int j = 0; j < this.getColumns(); j++) {
           result.setValue(i, j, (Rational) this.getValue(i, j).multiply(r));
@@ -142,8 +149,14 @@ public class Matrix implements Operand {
     throw new UnsupportedOperationException("Unsupported operation for type: "+ other.getClass().getName());
   }
 
-  @JsonValue
-  public int[][] getData() {
-    return this.data;
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder("[");
+    for (int i = 0; i < data.length; i++) {
+      sb.append(Arrays.toString(data[i]));
+      if (i != data.length-1) sb.append(",");
+    }
+    sb.append("]");
+    return sb.toString();
   }
 }

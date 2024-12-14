@@ -62,7 +62,6 @@ public class Rational implements Operand {
         throw new UnsupportedOperationException("unsupported operation for type :"+other.getClass().getName());
     }
 
-    @Override
     public Operand divide(Operand other) {
         if (other instanceof Rational) {
             Rational r = (Rational) other;
