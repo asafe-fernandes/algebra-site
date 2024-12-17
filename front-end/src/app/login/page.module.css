@@ -1,0 +1,7 @@
+.mainContainer{
+  min-height: calc(100vh - 357px);
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
