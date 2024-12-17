@@ -4,7 +4,7 @@ import styles from './ButtonIcon.module.css';
 type TypeButton = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   children: React.ReactNode
   detach?: boolean
-  className: string
+  className?: string
 }
 
 export default function ButtonIcon({children, detach, className, ...props}: TypeButton){
