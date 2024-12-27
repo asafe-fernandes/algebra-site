@@ -1,0 +1,56 @@
+@keyframes blockWalk {
+  0%{
+    transform-origin: right bottom;
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+  25%{
+    transform-origin: right bottom;
+    transform: translate(-100%) rotate(90deg);
+  }
+  26%{
+    transform-origin: right top;
+    transform: translate(0%, 100%) rotate(90deg);
+  }
+  50%{
+    transform-origin: right top;
+    transform: translate(-100%, 100%) rotate(180deg);
+  }
+  51%{
+    transform-origin: left top;
+    transform: translate(100%, 100%) rotate(180deg);
+  }
+  75%{
+    transform-origin: left top;
+    transform: translate(0%, 100%) rotate(270deg);
+  }
+  76%{
+    transform-origin: left bottom;
+    transform: translate(100%, 0%) rotate(270deg);
+  }
+  100%{
+    transform-origin: left bottom;
+    transform: translate(0%, 0%) rotate(360deg);
+  }
+  
+}
+
+.svgContainer{
+  width: 100%;
+  height: 100vh;
+  max-height: 100%;
+  
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: var(--colorContrast);
+}
+.svgLogo{
+  width: 80px;
+  height: 80px;
+  
+  fill: var(--color);
+  
+  animation: blockWalk 3s infinite;
+}

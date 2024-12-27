@@ -1,0 +1,22 @@
+.linkTextContainer{
+  display: inline-block;
+  font: normal 600 1em var(--font);
+  color: var(--color);
+
+  transition: all .3s ease-in-out;
+}
+
+@media screen and (min-width: 769px) {
+  .linkTextContainer:hover{
+    transform: translate(0px, -3px);
+  }
+}
+.linkTextContainer:active{
+  transform: scale(.9);
+  transition: all .07s ease-in-out;
+}
+
+.detach{
+  background-color: var(--purple);
+  color: var(--white);
+}

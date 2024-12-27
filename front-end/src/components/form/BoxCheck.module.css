@@ -1,0 +1,27 @@
+.input{
+  display: none;
+}
+
+
+.labelContainer{
+  cursor: pointer;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.labelContainer:active > .buttonIcon{
+  transform: scale(.9);
+  transition: all .1s ease-in-out;
+}
+
+.buttonIcon{
+  padding: 0px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+
+.icon{
+  fill: var(--color);
+}

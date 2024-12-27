@@ -1,0 +1,15 @@
+.articleContainer{
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+}
+
+.articleContainer > h1,
+.articleContainer > h2{
+  margin-top: 15px;
+  padding-bottom: 5px;
+}
+.articleContainer > h3,
+.articleContainer > h4{
+  margin-top: 5px;
+}
