@@ -28,15 +28,13 @@ Certifique-se de que os seguintes programas estão instalados em sua máquina:
 Clone o projeto utilizando o Git:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DO_REPOSITORIO>
+git clone https://github.com/asafe-fernandes/algebra-site.git
+cd algebra-site/back-end/question-generator
 ```
-
-Substitua `<URL_DO_REPOSITORIO>` pelo URL do repositório Git do projeto e `<NOME_DO_REPOSITORIO>` pelo nome da pasta do projeto.
 
 ### Como Rodar o Projeto
 
-1. Execute o comando abaixo para compilar e instalar as dependências do projeto:
+1. Execute o comando abaixo para instalar as dependências do projeto:
 
    ```bash
    mvn clean install
@@ -63,12 +61,11 @@ Para gerar um arquivo `.jar` executável, siga os passos abaixo:
 2. Após o build, execute o arquivo `.jar` gerado no diretório `target`:
 
    ```bash
-   java -jar target/<NOME_DO_ARQUIVO>.jar
+   java -jar target/question-generator-x.x.x.jar
    ```
 
 
 ### Observações
 
 - Certifique-se de que a porta `8080` não está em uso antes de executar o projeto.
-- Para configurar variáveis de ambiente ou modificar parâmetros, consulte a documentação específica do projeto.
 
