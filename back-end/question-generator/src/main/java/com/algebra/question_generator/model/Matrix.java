@@ -122,13 +122,17 @@ public class Matrix implements Operand {
   public Operand multiply(Operand other) {
     int rowsA = this.getRows();
     int colsA = this.getColumns();
+
     if (other instanceof Matrix) {
       Matrix m = (Matrix) other;
       Matrix result = new Matrix(this.getRows(), m.getColumns());
+
       System.out.println("colsA: " + colsA);
       System.out.println("RowsB: " + m.getRows());
+
       if (colsA != m.getRows())
-        throw new ArithmeticException("cannot multiply matrices with different collumns and rows!");
+        throw new ArithmeticException("cannot multiply matrices with different collumns and rows!" + "MatrixA: "
+            + this.toString() + " MatrixB: " + m.toString());
       int colsB = m.getColumns();
       for (int i = 0; i < rowsA; i++) {
         for (int j = 0; j < colsB; j++) {
