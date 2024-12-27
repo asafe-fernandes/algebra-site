@@ -1,0 +1,10 @@
+.containerFlexCenter{
+  align-items: center;
+  text-align: center;
+}
+
+.image{
+  width: 100%;
+  height: fit-content;
+  max-width: 400px;
+}

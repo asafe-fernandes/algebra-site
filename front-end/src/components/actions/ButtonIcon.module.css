@@ -1,0 +1,32 @@
+.buttonContainer{
+  cursor: pointer;
+
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+  max-height: 40px;
+  padding: 3px;
+
+  background-color: transparent;
+  outline: none;
+  border: none;
+
+  fill: var(--purple);
+  color: var(--purple);
+
+  transition: all .2s ease-in-out;
+}
+@media screen and (min-width: 769px) {
+  .buttonContainer:hover{
+    opacity: .7;
+  }
+}
+.buttonContainer:active{
+  transform: scale(.9);
+  transition: all .07s ease-in-out;
+}
+
+.buttonContainer *{
+  width: 100%;
+  height: 100%;
+}

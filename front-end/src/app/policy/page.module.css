@@ -1,0 +1,14 @@
+.mainContainer{
+  max-width: 800px;
+  margin: auto;
+}
+
+.textCenter{
+  margin: auto;
+  text-align: center;
+}
+
+.mainContainer ol,
+.mainContainer ul{
+  padding-left: 30px;
+}

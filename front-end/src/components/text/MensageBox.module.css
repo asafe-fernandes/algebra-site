@@ -1,0 +1,33 @@
+.mensageContainer{
+  width: 300px;
+  height: fit-content;
+  padding: 13px 15px;
+
+  opacity: 0;
+  background-color: var(--colorContrast);
+  box-shadow: var(--shadow);
+  border-radius: var(--borderRadius);
+  
+  text-align: center;
+
+  transform: scale(0);
+  transition: all .3s ease-in-out;
+}
+
+.mensageShow{
+  opacity: 1;
+  transform: scale(1);
+}
+
+.alert{
+  --color: var(--white);
+  background-color: var(--orange);
+}
+.error{
+  --color: var(--white);
+  background-color: var(--red);
+}
+.success{
+  --color: var(--white);
+  background-color: var(--green);
+}

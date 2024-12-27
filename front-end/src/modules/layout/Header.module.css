@@ -1,0 +1,48 @@
+.dark{
+  --color: var(--white);
+  --colorBackground: var(--blue);
+  --colorContrast: var(--darkBlue);
+}
+.ligth{
+  --color: var(--black);
+  --colorBackground: var(--white);
+  --colorContrast: var(--cleanYellow);
+}
+
+.fixedHeaderContainer{
+  height: 60px;
+  width: 100%;
+}
+
+.headerContainer{
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+
+  height: 60px;
+  width: 100%;
+  padding: 10px 15px;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 20px;
+
+  background-color: var(--colorContrast);
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+.headerContainer *{
+  color: var(--color);
+  fill: var(--color);
+}
+
+.flowIconContainer{
+  width: 100%;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  gap: 20px;
+}

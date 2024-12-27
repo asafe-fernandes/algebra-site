@@ -1,0 +1,50 @@
+.linkContainerButton{
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  padding: 13px 15px;
+
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 5px;
+
+  background-color: var(--color);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow);
+
+  font: normal 500 1em var(--font);
+  color: var(--colorBackground);
+  text-decoration: none;
+
+  transition: all .3s ease-in-out;
+}
+.linkContainerButton::after{
+  content: '';
+  
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
+  opacity: .5;
+  background-color: var(--colorContrast);
+  
+  transform: translate(0px, 101%);
+  transition: all .3s ease-in-out;
+}
+
+@media screen and (min-width: 769px) {
+  .linkContainerButton:hover::after{
+    transform: translate(0px, 0%);
+  }
+}
+.linkContainerButton:active{
+  transform: scale(.9);
+  transition: all .07s ease-in-out;
+}
+
+.detach{
+  background-color: var(--purple);
+  color: var(--white);
+}

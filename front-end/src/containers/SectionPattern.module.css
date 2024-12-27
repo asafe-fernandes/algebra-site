@@ -1,0 +1,21 @@
+.backgroundContainer{
+  background-image: linear-gradient(var(--darkBlue), var(--blue));
+  box-shadow: 2px 0px 4px rgb(0, 0, 0);
+}
+.sectionContainer{
+  --color: var(--white);
+  overflow: hidden;
+
+  width: 100%;
+  height: 80vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  background-image: url('../../public/endless_constellation.svg');
+
+  text-align: center;
+}

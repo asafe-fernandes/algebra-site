@@ -1,0 +1,7 @@
+.sectionContainer{
+  padding: 80px 15px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 30px;
+}
