@@ -12,20 +12,22 @@ public class ExpressionService {
   private final Random rand = new Random();
 
   // Gera uma expressão aleatória com um número especificado de operandos
-  public ExpressionQuestion generateRandomExpression(boolean hasParenthesis, boolean onlyIntegers, int numberOfOperands,
+  public ExpressionQuestion generateRandomExpression(
+      boolean hasParenthesis,
+      boolean onlyIntegers,
+      int numberOfOperands,
       int maxRows,
       int maxCols) {
+
     if (numberOfOperands < 2) {
       throw new IllegalArgumentException("O número de operandos deve ser pelo menos 2.");
     }
 
-    // Lista para armazenar os operandos e os operadores
     List<Operand> operands = new ArrayList<>();
     List<Character> operators = new ArrayList<>();
-    int rows = rand.nextInt(maxCols) + 1; // Gera um número aleatório entre 1 e 5 para as linhas
+    int rows = rand.nextInt(maxCols) + 1;
     int cols = rand.nextInt(maxRows) + 1; // Gera um número aleatório entre 1 e 5 para as colunas
 
-    // Gerar operandos aleatórios
     for (int i = 0; i < numberOfOperands; i++) {
       operands.add(generateRandomOperand(onlyIntegers, rows, cols));
       if (i < numberOfOperands - 1) { // Não gerar operador após o último operando
@@ -65,12 +67,11 @@ public class ExpressionService {
           expression.append(operands.get(i + j + 1));
         }
 
-        expression.append(")"); // Fecha os parênteses
-        i += operandsInParens; // Avança o índice conforme a quantidade de operandos que foram usados
+        expression.append(")");
+        i += operandsInParens;
       } else {
-        // Caso contrário, apenas adiciona o operando sem parênteses
         expression.append(" ").append(operators.get(i)).append(" ").append(operands.get(i + 1));
-        i++; // Avança para o próximo operando
+        i++;
       }
     }
 
@@ -78,20 +79,16 @@ public class ExpressionService {
   }
 
   private Operand generateRandomOperand(boolean onlyIntegers, int rows, int cols) {
-    // Sorteia se o operando será uma matriz ou um número racional
     if (rand.nextBoolean()) {
-      return generateRandomMatrix(onlyIntegers, rows, cols); // Gera uma matriz aleatória
+      return generateRandomMatrix(onlyIntegers, rows, cols);
     } else {
-      return generateRandomRational(onlyIntegers); // Gera um número racional aleatório
+      return generateRandomRational(onlyIntegers);
     }
   }
 
   private Operand generateRandomMatrix(boolean onlyIntegers, int rows, int cols) {
-    // Gera uma matriz de tamanho aleatório entre 1x1 e 5x5 (ou maior, conforme
-    // desejado)
     Matrix matrix = new Matrix(rows, cols);
 
-    // Preenche a matriz com valores racionais aleatórios
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         matrix.setValue(i, j, generateRandomRational(onlyIntegers));
@@ -101,14 +98,12 @@ public class ExpressionService {
   }
 
   private Rational generateRandomRational(boolean onlyIntegers) {
-    // Gera um número racional aleatório (numerador e denominador entre 1 e 10)
     int numerator = rand.nextInt(10) + 1;
     int denominator = onlyIntegers ? 1 : rand.nextInt(10) + 1;
     return new Rational(numerator, denominator);
   }
 
   private char getRandomOperator() {
-    // Gera um operador aleatório entre +, -, * e /
     char[] operators = { '+', '-', '*' };
     return operators[rand.nextInt(operators.length)];
   }
