@@ -1,5 +1,6 @@
 package com.algebra.question_generator.model;
 
+import com.algebra.question_generator.model.Operands.*;
 import java.util.*;
 
 public class Expression {

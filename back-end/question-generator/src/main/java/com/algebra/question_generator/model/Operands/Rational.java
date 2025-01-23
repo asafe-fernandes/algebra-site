@@ -1,4 +1,4 @@
-package com.algebra.question_generator.model;
+package com.algebra.question_generator.model.Operands;
 
 import lombok.Getter;
 import lombok.Setter;

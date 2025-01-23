@@ -12,7 +12,7 @@ public class ExpressionService {
   private final Random rand = new Random();
 
   // Gera uma expressão aleatória com um número especificado de operandos
-  public ExpressionQuestion generateRandomExpression(QuestionRequestDTO questionRequestDTO) {
+  public Question generateRandomExpression(QuestionRequestDTO questionRequestDTO) {
     boolean hasParenthesis = questionRequestDTO.hasParenthesis();
     boolean onlyIntegers = questionRequestDTO.onlyIntegers();
     boolean onlyMatrices = questionRequestDTO.onlyMatrices();
@@ -36,7 +36,7 @@ public class ExpressionService {
     }
     String expression = buildExpression(operands, operators, hasParenthesis);
     String answer = Expression.parseExpression(expression).toString();
-    return new ExpressionQuestion(expression, answer);
+    return new Question(expression, answer);
   }
 
   public String buildExpression(List<Operand> operands, List<Character> operators, boolean putParenthesis) {
