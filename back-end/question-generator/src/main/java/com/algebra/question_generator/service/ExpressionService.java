@@ -12,30 +12,28 @@ public class ExpressionService {
   private final Random rand = new Random();
 
   // Gera uma expressão aleatória com um número especificado de operandos
-  public ExpressionQuestion generateRandomExpression(
-      boolean hasParenthesis,
-      boolean onlyIntegers,
-      int numberOfOperands,
-      int maxRows,
-      int maxCols) {
+  public ExpressionQuestion generateRandomExpression(QuestionRequestDTO questionRequestDTO) {
+    boolean hasParenthesis = questionRequestDTO.hasParenthesis();
+    boolean onlyIntegers = questionRequestDTO.onlyIntegers();
+    boolean onlyMatrices = questionRequestDTO.onlyMatrices();
+    int numberOfOperands = questionRequestDTO.numberOfOperands();
+    int maxRows = questionRequestDTO.maxRows();
+    int maxCols = questionRequestDTO.maxCols();
 
-    if (numberOfOperands < 2) {
-      throw new IllegalArgumentException("O número de operandos deve ser pelo menos 2.");
-    }
+    if (numberOfOperands < 2)
+      throw new IllegalArgumentException("Number of operands needs to be at least 2.");
 
     List<Operand> operands = new ArrayList<>();
     List<Character> operators = new ArrayList<>();
     int rows = rand.nextInt(maxCols) + 1;
-    int cols = rand.nextInt(maxRows) + 1; // Gera um número aleatório entre 1 e 5 para as colunas
+    int cols = rand.nextInt(maxRows) + 1;
 
     for (int i = 0; i < numberOfOperands; i++) {
-      operands.add(generateRandomOperand(onlyIntegers, rows, cols));
-      if (i < numberOfOperands - 1) { // Não gerar operador após o último operando
+      operands.add(generateRandomOperand(onlyMatrices, onlyIntegers, rows, cols));
+      if (i < numberOfOperands - 1) {
         operators.add(getRandomOperator());
       }
     }
-
-    // Construir a expressão
     String expression = buildExpression(operands, operators, hasParenthesis);
     String answer = Expression.parseExpression(expression).toString();
     return new ExpressionQuestion(expression, answer);
@@ -78,11 +76,13 @@ public class ExpressionService {
     return expression.toString();
   }
 
-  private Operand generateRandomOperand(boolean onlyIntegers, int rows, int cols) {
-    if (rand.nextBoolean()) {
-      return generateRandomMatrix(onlyIntegers, rows, cols);
-    } else {
+  private Operand generateRandomOperand(boolean onlyMatrices, boolean onlyIntegers, int rows, int cols) {
+
+    boolean condicional = onlyMatrices ? false : rand.nextBoolean();
+    if (condicional) {
       return generateRandomRational(onlyIntegers);
+    } else {
+      return generateRandomMatrix(onlyIntegers, rows, cols);
     }
   }
 
