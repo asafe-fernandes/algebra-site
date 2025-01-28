@@ -44,13 +44,13 @@
   justify-content: center;
   align-items: center;
   
-  background-color: var(--colorContrast);
+  background-color: var(--color);
 }
 .svgLogo{
   width: 80px;
   height: 80px;
   
-  fill: var(--color);
+  fill: var(--colorContrast);
   
   animation: blockWalk 3s infinite;
 }

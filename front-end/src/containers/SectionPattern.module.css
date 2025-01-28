@@ -1,5 +1,5 @@
 .backgroundContainer{
-  background-image: linear-gradient(var(--darkBlue), var(--blue));
+  background-image: linear-gradient(var(--colorNeutral1), var(--purple));
   box-shadow: 2px 0px 4px rgb(0, 0, 0);
 }
 .sectionContainer{

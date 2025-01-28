@@ -1,7 +1,7 @@
 .linkTextContainer{
   display: inline-block;
   font: normal 600 1em var(--font);
-  color: var(--color);
+  color: var(--colorContrast);
 
   transition: all .3s ease-in-out;
 }
@@ -17,6 +17,9 @@
 }
 
 .detach{
-  background-color: var(--purple);
-  color: var(--white);
+  color: var(--purple);
+}
+
+.id{
+  color: var(--orange)
 }

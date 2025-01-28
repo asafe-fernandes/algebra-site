@@ -1,14 +1,3 @@
-.dark{
-  --color: var(--white);
-  --colorBackground: var(--blue);
-  --colorContrast: var(--darkBlue);
-}
-.ligth{
-  --color: var(--black);
-  --colorBackground: var(--white);
-  --colorContrast: var(--cleanYellow);
-}
-
 .footerContainer{
   padding: 50px 15px;
 
@@ -17,7 +6,7 @@
   align-items: center;
   gap: 30px;
 
-  background-color: var(--colorContrast);
+  background-color: var(--colorNeutral1);
   box-shadow: -2px 0px 4px rgba(0, 0, 0, 0.15);
 
   text-align: center;

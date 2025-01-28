@@ -11,14 +11,14 @@
   align-items: center;
   gap: 5px;
 
-  background-color: var(--color);
+  background-color: var(--colorContrast);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow);
   border: none;
   outline: none;
 
   font: normal 500 1em var(--font);
-  color: var(--colorBackground);
+  color: var(--color);
   text-decoration: none;
 
   transition: all .3s ease-in-out;
@@ -32,7 +32,7 @@
   height: 100%;
 
   opacity: .5;
-  background-color: var(--colorContrast);
+  background-color: var(--colorNeutral1);
   
   transform: translate(0px, 101%);
   transition: all .3s ease-in-out;

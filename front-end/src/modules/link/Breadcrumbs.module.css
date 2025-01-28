@@ -1,0 +1,23 @@
+.navContainer{
+  position: fixed;
+  top: 75px;
+  
+  width: 100%;
+  padding: 0px 15px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 5px;
+}
+
+.navContainer > p{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 5px;
+}
+
+.icon{
+  height: 19px;
+  width: 19px;
+  fill: var(--colorContrast);
+}

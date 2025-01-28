@@ -6,10 +6,11 @@ type TypeLinkText = LinkProps & {
   target?: string
   hreflang?: string
   rel?: string
+  style?: 'detach' | 'id'
 }
 
-export default function LinkText({children, target, hreflang, rel, ...props}: TypeLinkText){
+export default function  LinkText({children, target, hreflang, rel, style, ...props}: TypeLinkText){
   return(
-    <Link target={target} rel={rel} hrefLang={hreflang} className={styles.linkTextContainer} {...props}>{children}</Link>
+    <Link target={target} rel={rel} hrefLang={hreflang} className={`${styles.linkTextContainer} ${style && styles[style]}`} {...props}>{children}</Link>
   );
 } 
