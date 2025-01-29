@@ -1,0 +1,13 @@
+.light{
+  --color: var(--white);
+  --colorNeutral1: var(--w_grey);
+  --colorNeutral2: var(--w_whiteGrey);
+  --colorContrast: var(--w_darkGrey);
+}
+
+.dark{
+  --color: var(--b_darkGrey);
+  --colorNeutral1: var(--black);
+  --colorNeutral2: var(--b_lightBlack);
+  --colorContrast: var(--white);
+}

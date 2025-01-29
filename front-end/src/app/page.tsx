@@ -12,7 +12,7 @@ export default function LendingPage(){
     <main>
       <SectionPattern>
         <h1 className={styles.title}>Aprimore seu<br/><strong>CONHECIMENTO!</strong></h1>
-        <LinkButton detach href='/questions'>Praticar<BsPlay/> </LinkButton>
+        <LinkButton detach href='/Coliseu'>Praticar<BsPlay/> </LinkButton>
       </SectionPattern>
       <Section className={styles.containerFlexCenter}>
         <Image className={styles.image} alt='' src={illustrationImage}/>
@@ -20,7 +20,7 @@ export default function LendingPage(){
           <h2>Você está pronto para ser o <br/> <strong>MELHOR?</strong></h2>
           <p>Suba de posição enquanto resolve desafios e desbloqueie conquistas. Compita com amigos ou alcance o topo no ranking global!</p>
         </Article>
-        <LinkButton detach hreflang='pt-br' href='/questions'>Competir agora!</LinkButton>
+        <LinkButton detach hreflang='pt-br' href='/Coliseu'>Competir agora!</LinkButton>
       </Section>
     </main>
   );

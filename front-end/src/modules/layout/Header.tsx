@@ -41,7 +41,7 @@ export default function Header({theme, onChangeTheme}: {theme?: 'dark' | 'light'
         <SliderText timer={5} texts={slideText} animation='top'/>
 
         <div className={styles.flowIconContainer}>
-          <ButtonIcon onClick={changeTheme}>{newTheme === 'light' ? <BsSun /> : <BsMoon />}</ButtonIcon>
+          <ButtonIcon onClick={changeTheme}>{newTheme === 'light' ? <BsMoon /> : <BsSun />}</ButtonIcon>
           <LinkIcon hreflang='pt-br' href='/Entrar'><BsPlayFill /></LinkIcon>
         </div>
       </header>

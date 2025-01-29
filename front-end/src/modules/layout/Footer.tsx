@@ -12,7 +12,7 @@ export default function Footer(){
         <li><LinkText hreflang='pt-br' href='/Entrar'>Entrar</LinkText></li>
         <li><LinkText hreflang='pt-br' href='/Coliseu/Ranking'>Ranking</LinkText></li>
       </ul>
-      <LinkButton hreflang='pt-br' href='/questions'>Resolver Desafios</LinkButton>
+      <LinkButton hreflang='pt-br' href='/Coliseu'>Resolver Desafios</LinkButton>
       <Article>
         <p className='p_small'>© MatHub | 2024<br />Todos os direitos reservados</p>
         <ul className={styles.listAnchorContainer}>

@@ -3,15 +3,24 @@
   height: fit-content;
   padding: 13px 15px;
 
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+
   opacity: 0;
-  background-color: var(--colorContrast);
+  background-color: var(--colorNeutral1);
   box-shadow: var(--shadow);
   border-radius: var(--borderRadius);
-  
-  text-align: center;
 
   transform: scale(0);
   transition: all .3s ease-in-out;
+}
+
+.containerButtonConfirm{
+  width: fit-content;
+  overflow: visible;
+
+  align-self: flex-end;
 }
 
 .mensageShow{
