@@ -15,6 +15,49 @@ public class Expression {
     this.operator = operator;
   }
 
+  public static int calculateComplexity(String expr) {
+    int complexity = 1; // Inicia com a menor complexidade (1)
+    int depth = 0; // Profundidade dos parênteses
+    int operatorsCount = 0; // Contagem de operadores
+    int matrixCount = 0; // Contagem de matrizes
+    int operandCount = 0; // Contagem de operandos (racionais ou matrizes)
+
+    for (int i = 0; i < expr.length(); i++) {
+      char ch = expr.charAt(i);
+
+      // Aumenta a profundidade dos parênteses
+      if (ch == '(') {
+        depth++;
+      } else if (ch == ')') {
+        depth--;
+      }
+
+      // Conta os operadores
+      if ("+-*/".indexOf(ch) != -1) {
+        operatorsCount++;
+      }
+
+      // Conta as matrizes
+      if (ch == '[') {
+        matrixCount++;
+      }
+
+      // Conta os operandos
+      if (Character.isDigit(ch) || ch == '/' || ch == '[') {
+        operandCount++;
+      }
+    }
+
+    // Ajuste de complexidade com base nos operadores e na profundidade
+    complexity += Math.min(operatorsCount, 5); // Limita a contribuição dos operadores
+    complexity += Math.min(depth, 3); // A profundidade dos parênteses pode aumentar a complexidade
+    complexity += Math.min(matrixCount, 3); // Matrizes também adicionam complexidade
+    complexity += Math.min(operandCount / 2, 3); // Quanto mais operandos, mais complexa a expressão fica
+
+    // Limita a complexidade para garantir que não ultrapasse 10
+    return Math.min(complexity, 10);
+  }
+
   public Operand evaluate() {
     return switch (operator) {
       case '+' -> left.sum(right);

@@ -13,4 +13,6 @@ public class Question {
 
   private String expresssion;
   private String rightAnswer;
+  private int complexity;
+  private QuestionRequestDTO questionRequestDTO;
 }

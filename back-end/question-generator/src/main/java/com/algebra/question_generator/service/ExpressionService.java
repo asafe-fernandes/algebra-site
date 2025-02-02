@@ -17,6 +17,7 @@ public class ExpressionService {
     boolean hasParenthesis = questionRequestDTO.hasParenthesis();
     boolean onlyIntegers = questionRequestDTO.onlyIntegers();
     boolean onlyMatrices = questionRequestDTO.onlyMatrices();
+    boolean primeMultiplierLess10 = questionRequestDTO.primeMultiplerLess10();
     int numberOfOperands = questionRequestDTO.numberOfOperands();
     int maxRows = questionRequestDTO.maxRows();
     int maxCols = questionRequestDTO.maxCols();
@@ -30,14 +31,16 @@ public class ExpressionService {
     int cols = rand.nextInt(maxRows) + 1;
 
     for (int i = 0; i < numberOfOperands; i++) {
-      operands.add(generateRandomOperand(onlyMatrices, onlyIntegers, rows, cols));
+      operands.add(generateRandomOperand(onlyMatrices, onlyIntegers, primeMultiplierLess10, rows, cols));
       if (i < numberOfOperands - 1) {
         operators.add(getRandomOperator());
       }
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     String expression = buildExpression(operands, operators, hasParenthesis);
     String answer = Expression.parseExpression(expression).toString();
-    return new Question(expression, answer);
+    int complexity = Expression.calculateComplexity(expression);
+    return new Question(expression, answer, complexity, questionRequestDTO);
   }
 
   public String buildExpression(List<Operand> operands, List<Character> operators, boolean putParenthesis) {
@@ -77,31 +80,43 @@ public class ExpressionService {
     return expression.toString();
   }
 
-  private Operand generateRandomOperand(boolean onlyMatrices, boolean onlyIntegers, int rows, int cols) {
+  private Operand generateRandomOperand(boolean onlyMatrices, boolean onlyIntegers, boolean primeMultiplierLess10,
+      int rows, int cols) {
 
     boolean condicional = onlyMatrices ? false : rand.nextBoolean();
     if (condicional) {
-      return generateRandomRational(onlyIntegers);
+      return generateRandomRational(onlyIntegers, primeMultiplierLess10);
     } else {
-      return generateRandomMatrix(onlyIntegers, rows, cols);
+      return generateRandomMatrix(onlyIntegers, primeMultiplierLess10, rows, cols);
     }
   }
 
-  private Operand generateRandomMatrix(boolean onlyIntegers, int rows, int cols) {
+  private Operand generateRandomMatrix(boolean onlyIntegers, boolean primeMultiplierLess10, int rows, int cols) {
     Matrix matrix = new Matrix(rows, cols);
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        matrix.setValue(i, j, generateRandomRational(onlyIntegers));
+        matrix.setValue(i, j, generateRandomRational(onlyIntegers, primeMultiplierLess10));
       }
     }
     return matrix;
   }
 
-  private Rational generateRandomRational(boolean onlyIntegers) {
+  private Rational generateRandomRational(boolean onlyIntegers, boolean primeMultiplierLess10) {
+
     int numerator = rand.nextInt(10) + 1;
     int denominator = onlyIntegers ? 1 : rand.nextInt(10) + 1;
     return new Rational(numerator, denominator);
+  }
+
+  private int randomPrimeMultiplierLess10(int factor) {
+    int[] primes = { 2, 3, 5, 7 };
+    int randomFactor = rand.nextInt(1, factor + 1);
+    if (rand.nextBoolean()) {
+      return primes[rand.nextInt(primes.length)] * randomFactor;
+    }
+
+    return primes[rand.nextInt(primes.length)];
   }
 
   private char getRandomOperator() {
