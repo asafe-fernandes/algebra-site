@@ -33,7 +33,6 @@ public class QuestionService {
         double minRating = target - tolerance;
         double maxRating = target + tolerance;
         List<Question> questions = this.questionRepository.findQuestionByRating(minRating, maxRating);
-        System.out.println(questions.size());
 
         Question result = questions.get(rand.nextInt(questions.size()));
         return result;
