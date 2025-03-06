@@ -1,4 +1,4 @@
-package com.algebra.question_generator.model;
+package com.algebra.question_generator.model.Operands;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -19,11 +19,6 @@ public class Matrix implements Operand {
     this.data = data;
   }
 
-  public Matrix(int rows, int columns, int min, int max) {
-    this.data = new Rational[rows][columns];
-    generateRandomValues(min, max);
-  }
-
   public int getRows() {
     return this.data.length;
   }
@@ -38,15 +33,6 @@ public class Matrix implements Operand {
 
   public void setValue(int row, int column, Rational value) {
     data[row][column] = value;
-  }
-
-  private void generateRandomValues(int min, int max) {
-    for (Rational[] datum : data) {
-      for (Rational rational : datum) {
-        rational.setNumerator(rand.nextInt(max - min + 1) + min);
-        rational.setDenominator(rand.nextInt(max - min + 1) + min);
-      }
-    }
   }
 
   public Matrix transpose() {
@@ -67,7 +53,6 @@ public class Matrix implements Operand {
     Matrix result = new Matrix(this.getRows(), this.getColumns());
 
     if (other instanceof Matrix) {
-
       Matrix m = (Matrix) other;
       if (m.getColumns() != this.getColumns() || m.getRows() != this.getRows())
         throw new ArithmeticException("cannot sum different order matrices");
@@ -87,7 +72,7 @@ public class Matrix implements Operand {
       }
       return result;
     }
-    throw new UnsupportedOperationException("Unsupported operation for this type" + other.getClass().getName());
+    throw new UnsupportedOperationException("Unsupported operation for type: " + other.getClass().getName());
   }
 
   @Override
