@@ -28,15 +28,15 @@ public class ExpressionController {
         this.questionService = questionService;
     }
 
-    @GetMapping("/generate")
+    @PostMapping("/generate")
     public ResponseEntity<Question> generateExpression(@RequestBody QuestionRequestDTO questionRequestDTO) {
         Question response = expressionService.generateRandomExpression(questionRequestDTO);
         return ResponseEntity.ok().body(response);
     }
 
     @GetMapping
-    public ResponseEntity<Question> getQuestion(@RequestBody GetRequestDTO getRequestDTO) {
-        Question response = questionService.getByRating(getRequestDTO);
+    public ResponseEntity<Question> getQuestion(@RequestParam double rating, @RequestParam double tolerance) {
+        Question response = questionService.getByRating(rating, tolerance);
         return ResponseEntity.ok().body(response);
     }
 

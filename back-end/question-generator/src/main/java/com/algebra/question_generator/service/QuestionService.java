@@ -24,11 +24,8 @@ public class QuestionService {
         return response;
     }
 
-    public Question getByRating(GetRequestDTO getRequestDTO) {
+    public Question getByRating(double target, double tolerance) {
         Random rand = new Random();
-
-        double target = getRequestDTO.target();
-        double tolerance = getRequestDTO.tolerance();
 
         double minRating = target - tolerance;
         double maxRating = target + tolerance;
