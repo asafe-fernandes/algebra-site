@@ -28,9 +28,9 @@ public class ExpressionController {
         this.questionService = questionService;
     }
 
-    @PostMapping("/generate")
-    public ResponseEntity<Question> generateExpression(@RequestBody QuestionRequestDTO questionRequestDTO) {
-        Question response = expressionService.generateRandomExpression(questionRequestDTO);
+    @GetMapping("/all")
+    public ResponseEntity<List<Question>> getAll() {
+        List<Question> response = questionService.getAll();
         return ResponseEntity.ok().body(response);
     }
 
@@ -40,15 +40,17 @@ public class ExpressionController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Question>> getAll() {
-        List<Question> response = questionService.getAll();
+    @PostMapping("/generate")
+    public ResponseEntity<Question> generateExpression(@RequestBody QuestionRequestDTO questionRequestDTO) {
+        Question question = expressionService.generateRandomExpression(questionRequestDTO);
+        Question response = this.questionService.insert(question);
         return ResponseEntity.ok().body(response);
     }
 
     @PostMapping
     public ResponseEntity<Question> insert(@RequestBody QuestionDTO questionDTO) {
-        Question response = questionService.insert(questionDTO);
+        Question question = new Question(questionDTO);
+        Question response = questionService.insert(question);
         return ResponseEntity.ok().body(response);
     }
 
