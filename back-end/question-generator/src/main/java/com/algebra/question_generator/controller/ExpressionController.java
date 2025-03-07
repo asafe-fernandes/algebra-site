@@ -1,9 +1,8 @@
 package com.algebra.question_generator.controller;
 
-import com.algebra.question_generator.model.Question;
+import com.algebra.question_generator.model.domains.Question;
 import com.algebra.question_generator.model.DTOs.*;
-import com.algebra.question_generator.service.ExpressionService;
-import com.algebra.question_generator.service.QuestionService;
+import com.algebra.question_generator.service.*;
 
 import java.util.List;
 
@@ -65,7 +64,8 @@ public class ExpressionController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
-        this.questionService.delete(id);
+    public ResponseEntity<Question> delete(@PathVariable String id) {
+        Question response = this.questionService.delete(id);
+        return ResponseEntity.ok().body(response);
     }
 }
