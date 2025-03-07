@@ -1,7 +1,7 @@
 package com.algebra.question_generator.service;
 
 import com.algebra.question_generator.model.Operands.*;
-import com.algebra.question_generator.model.*;
+import com.algebra.question_generator.model.domains.*;
 import com.algebra.question_generator.model.DTOs.*;
 import org.springframework.stereotype.Service;
 

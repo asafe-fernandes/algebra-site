@@ -1,4 +1,4 @@
-package com.algebra.question_generator.model;
+package com.algebra.question_generator.model.domains;
 
 import com.algebra.question_generator.model.Operands.*;
 import java.util.*;

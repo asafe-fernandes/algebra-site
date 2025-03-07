@@ -1,4 +1,4 @@
-package com.algebra.question_generator.model;
+package com.algebra.question_generator.model.domains;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
