@@ -10,7 +10,9 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,13 +32,13 @@ public class ExpressionController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Question>> getAll() {
-        List<Question> response = questionService.getAll();
+        List<Question> response = this.questionService.getAll();
         return ResponseEntity.ok().body(response);
     }
 
     @GetMapping
     public ResponseEntity<Question> getQuestion(@RequestParam double rating, @RequestParam double tolerance) {
-        Question response = questionService.getByRating(rating, tolerance);
+        Question response = this.questionService.getByRating(rating, tolerance);
         return ResponseEntity.ok().body(response);
     }
 
@@ -50,12 +52,20 @@ public class ExpressionController {
     @PostMapping
     public ResponseEntity<Question> insert(@RequestBody QuestionDTO questionDTO) {
         Question question = new Question(questionDTO);
-        Question response = questionService.insert(question);
+        Question response = this.questionService.insert(question);
         return ResponseEntity.ok().body(response);
     }
 
-    @DeleteMapping
-    public void delete(@RequestParam String id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Question> update(@PathVariable String id, @RequestBody QuestionDTO questionDTO) {
+        Question question = new Question(questionDTO);
+        Question response = this.questionService.update(id, question);
+
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
         this.questionService.delete(id);
     }
 }

@@ -58,6 +58,5 @@ public class QuestionService {
 
     public void delete(String id) {
         this.questionRepository.deleteById(id);
-
     }
 }
