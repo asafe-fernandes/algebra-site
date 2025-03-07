@@ -6,7 +6,7 @@ import java.util.Random;
 import org.springframework.stereotype.Service;
 
 import com.algebra.question_generator.model.Question;
-import com.algebra.question_generator.model.DTOs.*;
+import com.algebra.question_generator.model.Exceptions.*;
 import com.algebra.question_generator.repository.QuestionRepository;
 
 @Service
@@ -36,9 +36,24 @@ public class QuestionService {
 
     }
 
-    public Question insert(QuestionDTO questionDTO) {
-        Question result = this.questionRepository.insert(new Question(questionDTO));
+    public Question insert(Question question) {
+        Question result = this.questionRepository.insert(question);
         return result;
+    }
+
+    public Question update(String id, Question other) {
+        Question question = this.questionRepository.findById(id)
+                .orElseThrow(QuestionNotFoundException::new);
+
+        if (!other.getRightAnswer().isEmpty())
+            question.setRightAnswer(other.getRightAnswer());
+        if (!other.getExpression().isEmpty())
+            question.setExpression(other.getExpression());
+        if (other.getRating() != 0.0)
+            question.setRating(other.getRating());
+
+        this.questionRepository.save(question);
+        return question;
     }
 
     public void delete(String id) {
