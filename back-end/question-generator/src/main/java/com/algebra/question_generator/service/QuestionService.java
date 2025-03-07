@@ -5,7 +5,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
-import com.algebra.question_generator.model.Question;
+import com.algebra.question_generator.model.domains.Question;
 import com.algebra.question_generator.model.Exceptions.*;
 import com.algebra.question_generator.repository.QuestionRepository;
 
@@ -56,7 +56,11 @@ public class QuestionService {
         return question;
     }
 
-    public void delete(String id) {
-        this.questionRepository.deleteById(id);
+    public Question delete(String id) {
+        Question toBeDeletedQuestion = this.questionRepository.findById(id)
+                .orElseThrow(QuestionNotFoundException::new);
+
+        this.questionRepository.delete(toBeDeletedQuestion);
+        return toBeDeletedQuestion;
     }
 }
