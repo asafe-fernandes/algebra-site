@@ -1,5 +1,6 @@
 package com.algebra.question_generator.model.Exceptions.Advice;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,6 +17,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
     }
 
+    @Primary
     @ExceptionHandler(NoResourceFoundException.class)
     private ResponseEntity<RestErrorMessage> noResourceFoundHandler(NoResourceFoundException exception) {
         RestErrorMessage errorMessage = new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
