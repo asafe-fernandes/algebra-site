@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import com.algebra.question_generator.model.domains.Question;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @Repository
 public interface QuestionRepository extends MongoRepository<Question, String> {
 

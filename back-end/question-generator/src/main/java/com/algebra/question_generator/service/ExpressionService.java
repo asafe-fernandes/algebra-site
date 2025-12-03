@@ -1,8 +1,7 @@
 package com.algebra.question_generator.service;
 
 import com.algebra.question_generator.model.Operands.*;
-import com.algebra.question_generator.model.domains.*;
-import com.algebra.question_generator.model.DTOs.*;
+import com.algebra.question_generator.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -11,119 +10,118 @@ import java.util.ArrayList;
 
 @Service
 public class ExpressionService {
-    private final Random rand = new Random();
+  private final Random rand = new Random();
 
-    // Gera uma expressão aleatória com um número especificado de operandos
-    public Question generateRandomExpression(QuestionRequestDTO questionRequestDTO) {
-        boolean hasParenthesis = questionRequestDTO.hasParenthesis();
-        boolean onlyIntegers = questionRequestDTO.onlyIntegers();
-        boolean onlyMatrices = questionRequestDTO.onlyMatrices();
-        int numberOfOperands = questionRequestDTO.numberOfOperands();
-        int rows = questionRequestDTO.rows();
-        int cols = questionRequestDTO.cols();
+  // Gera uma expressão aleatória com um número especificado de operandos
+  public Question generateRandomExpression(QuestionRequestDTO questionRequestDTO) {
+    boolean hasParenthesis = questionRequestDTO.hasParenthesis();
+    boolean onlyIntegers = questionRequestDTO.onlyIntegers();
+    boolean onlyMatrices = questionRequestDTO.onlyMatrices();
+    boolean primeMultiplierLess10 = questionRequestDTO.primeMultiplerLess10();
+    int numberOfOperands = questionRequestDTO.numberOfOperands();
+    int maxRows = questionRequestDTO.maxRows();
+    int maxCols = questionRequestDTO.maxCols();
 
-        boolean multi = rows == cols ? true : false;
+    if (numberOfOperands < 2)
+      throw new IllegalArgumentException("Number of operands needs to be at least 2.");
 
-        if (numberOfOperands < 2)
-            throw new IllegalArgumentException("Number of operands needs to be at least 2.");
+    List<Operand> operands = new ArrayList<>();
+    List<Character> operators = new ArrayList<>();
+    int rows = rand.nextInt(maxCols) + 1;
+    int cols = rand.nextInt(maxRows) + 1;
 
-        List<Operand> operands = new ArrayList<>();
-        List<Character> operators = new ArrayList<>();
+    for (int i = 0; i < numberOfOperands; i++) {
+      operands.add(generateRandomOperand(onlyMatrices, onlyIntegers, primeMultiplierLess10, rows, cols));
+      if (i < numberOfOperands - 1) {
+        operators.add(getRandomOperator());
+      }
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+    String expression = buildExpression(operands, operators, hasParenthesis);
+    String answer = Expression.parseExpression(expression).toString();
+    int complexity = Expression.calculateComplexity(expression);
+    return new Question(expression, answer, complexity, questionRequestDTO);
+  }
 
-        for (int i = 0; i < numberOfOperands; i++) {
-            operands.add(generateRandomOperand(onlyMatrices, onlyIntegers, rows, cols));
-            if (i < numberOfOperands - 1) {
-                operators.add(getRandomOperator(multi));
-            }
+  public String buildExpression(List<Operand> operands, List<Character> operators, boolean putParenthesis) {
+    StringBuilder expression = new StringBuilder();
+    int i = 0; // Índice dos operandos e operadores
+
+    while (i < operators.size()) {
+      // Adiciona o primeiro operando (ou o próximo)
+      if (i == 0) {
+        expression.append(operands.get(i));
+      }
+
+      // Se putParenthesis for verdadeiro, tenta adicionar parênteses
+      if (putParenthesis && i < operands.size() - 2 && rand.nextBoolean()) {
+        // Garante que haja pelo menos 2 operandos dentro dos parênteses
+        int operandsInParens = rand.nextInt(operands.size() - i - 1) + 2; // Pelo menos 2 operandos
+
+        // Adiciona o operador antes dos parênteses
+        expression.append(" ").append(operators.get(i)).append(" (");
+
+        // Adiciona os operandos dentro dos parênteses
+        for (int j = 0; j < operandsInParens && i + j + 1 < operands.size(); j++) {
+          if (j > 0) {
+            expression.append(" ").append(operators.get(i + j)).append(" ");
+          }
+          expression.append(operands.get(i + j + 1));
         }
 
-        String expression = buildExpression(operands, operators, hasParenthesis);
-        String answer = Expression.parseExpression(expression).toString();
-        double rating = calculateRating(questionRequestDTO);
-
-        return new Question(expression, answer, rating);
+        expression.append(")");
+        i += operandsInParens;
+      } else {
+        expression.append(" ").append(operators.get(i)).append(" ").append(operands.get(i + 1));
+        i++;
+      }
     }
 
-    public double calculateRating(QuestionRequestDTO qDTO) {
-        double rating = 0;
-        rating += !qDTO.onlyIntegers() ? 1 : 0;
-        rating += qDTO.numberOfOperands() > 4 ? qDTO.numberOfOperands() * 0.5 : qDTO.numberOfOperands() * 0.7;
-        rating += qDTO.hasParenthesis() ? 0.5 : 0;
-        rating += qDTO.onlyMatrices() ? 0.5 : 1;
-        rating += qDTO.rows() * qDTO.cols() > 9 ? 1.5 : 1;
+    return expression.toString();
+  }
 
-        return Math.max(1, Math.min(10, rating));
+  private Operand generateRandomOperand(boolean onlyMatrices, boolean onlyIntegers, boolean primeMultiplierLess10,
+      int rows, int cols) {
+
+    boolean condicional = onlyMatrices ? false : rand.nextBoolean();
+    if (condicional) {
+      return generateRandomRational(onlyIntegers, primeMultiplierLess10);
+    } else {
+      return generateRandomMatrix(onlyIntegers, primeMultiplierLess10, rows, cols);
+    }
+  }
+
+  private Operand generateRandomMatrix(boolean onlyIntegers, boolean primeMultiplierLess10, int rows, int cols) {
+    Matrix matrix = new Matrix(rows, cols);
+
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        matrix.setValue(i, j, generateRandomRational(onlyIntegers, primeMultiplierLess10));
+      }
+    }
+    return matrix;
+  }
+
+  private Rational generateRandomRational(boolean onlyIntegers, boolean primeMultiplierLess10) {
+
+    int numerator = rand.nextInt(10) + 1;
+    int denominator = onlyIntegers ? 1 : rand.nextInt(10) + 1;
+    return new Rational(numerator, denominator);
+  }
+
+  private int randomPrimeMultiplierLess10(int factor) {
+    int[] primes = { 2, 3, 5, 7 };
+    int randomFactor = rand.nextInt(1, factor + 1);
+    if (rand.nextBoolean()) {
+      return primes[rand.nextInt(primes.length)] * randomFactor;
     }
 
-    public String buildExpression(List<Operand> operands, List<Character> operators, boolean putParenthesis) {
-        StringBuilder expression = new StringBuilder();
-        int i = 0; // Índice dos operandos e operadores
+    return primes[rand.nextInt(primes.length)];
+  }
 
-        while (i < operators.size()) {
-            // Adiciona o primeiro operando (ou o próximo)
-            if (i == 0) {
-                expression.append(operands.get(i));
-            }
-
-            // Se putParenthesis for verdadeiro, tenta adicionar parênteses
-            if (putParenthesis && i < operands.size() - 2 && rand.nextBoolean()) {
-                // Garante que haja pelo menos 2 operandos dentro dos parênteses
-                int operandsInParens = rand.nextInt(operands.size() - i - 1) + 2; // Pelo menos 2 operandos
-
-                // Adiciona o operador antes dos parênteses
-                expression.append(" ").append(operators.get(i)).append(" (");
-
-                // Adiciona os operandos dentro dos parênteses
-                for (int j = 0; j < operandsInParens && i + j + 1 < operands.size(); j++) {
-                    if (j > 0) {
-                        expression.append(" ").append(operators.get(i + j)).append(" ");
-                    }
-                    expression.append(operands.get(i + j + 1));
-                }
-
-                expression.append(")");
-                i += operandsInParens;
-            } else {
-                expression.append(" ").append(operators.get(i)).append(" ").append(operands.get(i + 1));
-                i++;
-            }
-        }
-
-        return expression.toString();
-    }
-
-    private Operand generateRandomOperand(boolean onlyMatrices, boolean onlyIntegers, int rows, int cols) {
-
-        boolean condicional = onlyMatrices ? false : rand.nextBoolean();
-        if (condicional) {
-            return generateRandomRational(onlyIntegers);
-        } else {
-            return generateRandomMatrix(onlyIntegers, rows, cols);
-        }
-    }
-
-    private Operand generateRandomMatrix(boolean onlyIntegers, int rows, int cols) {
-        Matrix matrix = new Matrix(rows, cols);
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                matrix.setValue(i, j, generateRandomRational(onlyIntegers));
-            }
-        }
-        return matrix;
-    }
-
-    private Rational generateRandomRational(boolean onlyIntegers) {
-        int numerator = rand.nextInt(10) + 1;
-        int denominator = onlyIntegers ? 1 : rand.nextInt(10) + 1;
-        return new Rational(numerator, denominator);
-    }
-
-    private char getRandomOperator(boolean multi) {
-
-        char[] operators = { '+', '-', '*' };
-        return multi ? operators[rand.nextInt(operators.length)] : operators[rand.nextInt(operators.length - 1)];
-
-    }
+  private char getRandomOperator() {
+    char[] operators = { '+', '-', '*' };
+    return operators[rand.nextInt(operators.length)];
+  }
 
 }
